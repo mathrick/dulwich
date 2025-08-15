@@ -27,8 +27,8 @@ Coding style
 Where possible, please follow PEP8 with regard to coding style. Run ruff. See also "Style
 and typing checks" below for details on running style checkers.
 
-Furthermore, triple-quotes should always be """, single quotes are ' unless
-using " would result in less escaping within the string.
+Furthermore, triple-quotes should always be delimited with ``"""``, single quotes with
+``"`` unless using ``'`` would result in less escaping within the string.
 
 Public methods, functions and classes should all have doc strings. Please use
 Google style docstrings to document parameters and return values.
