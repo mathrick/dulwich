@@ -6,9 +6,26 @@ Where possible include updates to NEWS along with your improvements.
 
 New functionality and bug fixes should be accompanied by matching unit tests.
 
+Installing development dependencies
+-----------------------------------
+
+Install the checked out Dulwich package in editable mode with ``dev`` extras:
+
+.. code:: console
+
+   $ cd ~/path/to/checkouts/dulwich
+   # Make sure to run this in a virtual environment
+   $ pip install -e ".[dev]"
+
+This will ensure all the tools needed to test the changes are installed. Since Dulwich is
+installed in editable mode, code changes will be visible immediately, without requiring a
+reinstall (but any running Python processes will need to be reloaded to see the updated
+module definitions).
+
 Coding style
 ------------
-Where possible, please follow PEP8 with regard to coding style. Run ruff.
+Where possible, please follow PEP8 with regard to coding style. Run ruff. See also "Style
+and typing checks" below for details on running style checkers.
 
 Furthermore, triple-quotes should always be """, single quotes are ' unless
 using " would result in less escaping within the string.
@@ -63,16 +80,36 @@ Running the tests
 To run the testsuite, you should be able to simply run "make check". This
 will run the tests using unittest.
 
-::
+.. code:: console
+
    $ make check
 
 The compatibility tests that verify Dulwich behaves in a way that is compatible
 with C Git are the slowest, so you may want to avoid them while developing:
 
-::
+.. code:: console
+
    $ make check-nocompat
 
 testr and tox configuration is also present.
+
+Style and typing checks
+-----------------------
+
+Use ``make all-style`` to run all style-related checks. Use ``make typing`` for typing
+checks. Those checks are *mandatory*, a PR will not pass tests and will not be merged if
+they aren't successful.
+
+.. code:: console
+
+   $ make all-style
+   $ make typing
+
+Some of these checks will modify the code to fix issues encountered, remember to commit
+these changes afterwards!
+
+There are also individual ``make`` targets to run just a single style check, see the
+definition of ``all-style`` in ``Makefile``.
 
 Merge requests
 --------------
